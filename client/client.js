@@ -9,5 +9,3 @@ fetch('http://localhost:3000/sessions', {
 		'Content-Type': 'application/json'
 	}
 });
-
-document.querySelector("#searchParams").innerHTML = JSON.stringify({ s: searchParams.get('s') });
