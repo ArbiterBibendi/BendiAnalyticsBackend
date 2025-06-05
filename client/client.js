@@ -1,8 +1,8 @@
 const paramsString = window.location.search;
 const searchParams = new URLSearchParams(paramsString);
-const URL = document.currentScript.src;
-console.log(URL);
-fetch('http://localhost:3000/sessions', {
+const url = document.currentScript.src;
+const baseUrl = new URL(url).origin;
+fetch(`${baseUrl}/sessions`, {
 	method: 'POST',
 	body: JSON.stringify({ s: searchParams.get("s") }),
 	headers: {
