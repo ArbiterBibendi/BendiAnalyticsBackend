@@ -7,8 +7,9 @@ CREATE TABLE IF NOT EXISTS sessions (
 	time timestamp default current_timestamp
 );
 CREATE TABLE IF NOT EXISTS events (
-	id integer PRIMARY KEY,
+	id text PRIMARY KEY,
 	etype text,
+	edata text,
 	session_id integer,
 	ip text NOT NULL,
 	time timestamp default current_timestamp
