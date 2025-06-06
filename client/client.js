@@ -27,11 +27,13 @@ const onClick = (e) => {
 };
 
 /* Click events */
-['button', 'a'].forEach(selector => {
-	document.querySelectorAll(selector).forEach((element) => {
-		element.addEventListener("click", onClick);
-	});
-	document.querySelectorAll(selector).forEach((element) => {
-		element.addEventListener("auxclick", onClick);
+addEventListener('DOMContentLoaded', (e) => {
+	['button', 'a'].forEach(selector => {
+		document.querySelectorAll(selector).forEach((element) => {
+			element.addEventListener("click", onClick);
+		});
+		document.querySelectorAll(selector).forEach((element) => {
+			element.addEventListener("auxclick", onClick);
+		});
 	});
 });
