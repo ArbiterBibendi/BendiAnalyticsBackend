@@ -1,0 +1,13 @@
+[Unit]
+Description=AnalyticsBackend
+After=network.target
+
+[Service]
+Type=simple
+User=babackend
+WorkingDirectory=/home/babackend/BendiAnalyticsBackend
+ExecStart=/usr/bin/npm start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
