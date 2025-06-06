@@ -15,8 +15,8 @@ fetch(`${baseUrl}/sessions`, {
 /* Set all elements on page to send event data to events endpoint */
 const onClick = (e) => {
 	const etype = e.type;
-	const edataextra = e.target.href ? e.target.href : e.target.innerText;
-	const edata = `${window.location}:${e.target.tagName}:${edataextra}`
+	const edataextra = e.currentTarget.href ? e.currentTarget.href : e.currentTarget.innerText;
+	const edata = `${window.location}:${e.currentTarget.tagName}:${edataextra}`
 	fetch(`${baseUrl}/events`, {
 		method: 'POST',
 		body: JSON.stringify({ et: etype, ed: edata }),
@@ -25,13 +25,15 @@ const onClick = (e) => {
 		}
 	});
 };
+
+const selectors = ['button', 'a'];
 const setEventHandlers = () => {
-	['button', 'a'].forEach(selector => {
+	selectors.forEach(selector => {
 		document.querySelectorAll(selector).forEach((element) => {
-			element.addEventListener("click", onClick);
+			element.addEventListener("click", onClick, {passive: true});
 		});
 		document.querySelectorAll(selector).forEach((element) => {
-			element.addEventListener("auxclick", onClick);
+			element.addEventListener("auxclick", onClick, true);
 		});
 	});
 };
