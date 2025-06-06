@@ -11,10 +11,11 @@ router.post('/', async (req, res, next) => {
   const source = req.body.s ? req.body.s : "none";
   const clientip = req.headers['x-forwarded-for'] || req.ip;
   try {
-    await pool.query("INSERT INTO sessions (id, source, ip) VALUES ($1, $2, $3)", [uuid, source, clientip]);
+    await pool.query("INSERT INTO sessions (id, source, ip) VALUES ($1, $2, $3);", [uuid, source, clientip]);
   } catch (e) {
     console.error(e);
     res.status(418).send(e.message);
+    return;
   }
   res.send("Success");
 });
