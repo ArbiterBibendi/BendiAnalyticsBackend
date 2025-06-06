@@ -25,9 +25,7 @@ const onClick = (e) => {
 		}
 	});
 };
-
-/* Click events */
-addEventListener('DOMContentLoaded', (e) => {
+const setEventHandlers = () => {
 	['button', 'a'].forEach(selector => {
 		document.querySelectorAll(selector).forEach((element) => {
 			element.addEventListener("click", onClick);
@@ -36,4 +34,13 @@ addEventListener('DOMContentLoaded', (e) => {
 			element.addEventListener("auxclick", onClick);
 		});
 	});
-});
+};
+
+/* Click events */
+if (document.readyState !== 'loading') {
+	setEventHandlers();
+} else {
+	addEventListener('DOMContentLoaded', (e) => {
+		setEventHandlers();
+	});
+}
