@@ -8,6 +8,7 @@ var cors = require('cors');
 var sessionsRouter = require('./routes/sessions');
 var eventsRouter = require('./routes/events');
 var clientScriptRouter = require('./routes/clientScript')
+var healthRouter = require('./routes/health');
 
 var app = express();
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(cors());
+app.use('/health', healthRouter);
 app.use('/clientScript', clientScriptRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/events', eventsRouter);
